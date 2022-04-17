@@ -1,0 +1,25 @@
+
+<div class="container">
+  
+    <h4>Hamming Decoder</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>Hamming Code</mat-label>
+      <mat-select [(value)]="selectedHamming">
+        <mat-option></mat-option>
+        <mat-option [value]="option.value" *ngFor="let option of hamming">{{ option.viewValue }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" [formControl] ="message" 
+          placeholder="Enter binary code" aria-label="Enter binary code" 
+          aria-describedby="basic-addon2" [maxlength]="selectedHamming[0]">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button" (click)="abc()">Submit</button>
+        </div>
+      </div>
+      </div>
+    </div>
+</div>

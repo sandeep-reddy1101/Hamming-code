@@ -1,0 +1,67 @@
+<div class="container">
+  
+    <h4>Hamming Encoder</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>Hamming Code</mat-label>
+      <mat-select [(value)]="selectedHamming">
+        <mat-option></mat-option>
+        <mat-option [value]="option.value" *ngFor="let option of hamming">{{ option.viewValue }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" [formControl] ="message" 
+          placeholder="Enter binary code" aria-label="Enter binary code" 
+          aria-describedby="basic-addon2" [maxlength]="selectedHamming[1]">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button" (click)="abc()">Submit</button>
+        </div>
+      </div>
+      </div>
+    </div>
+  
+      
+  
+      <div *ngIf="toDisplay.length > 0" class="table"> 
+        <tbody>
+          <tr *ngFor="let arr of toDisplay; let i = index">
+            <th scope="row">
+              <p *ngIf="i == 0">Parity Bits</p>
+              <p *ngIf="i==1">{{arr[0]}}'s parity</p>
+              <p *ngIf="(i>1) && (i<toDisplay.length-1)">{{arr[(i-1)*2-1]}}'s parity</p>
+              <p *ngIf="i == toDisplay.length-1">Hamming Code</p>
+            </th>
+            <td *ngFor="let element of arr">{{element}}</td>
+          </tr>
+        </tbody>
+      </div>
+  
+      <div *ngIf = "parityValues">
+        <ul class="mt-3" *ngFor="let item of parityValues | keyvalue">
+          <!-- <span *ngIf=""></span> -->
+          <i>{{item.key}} = {{item.value}} 
+            (<span *ngIf="item.value == 0">number of 1's are even in {{item.key}}'s parity</span>
+            <span *ngIf="item.value == 1">number of 1's are odd in {{item.key}}'s parity</span>)
+          </i>
+        </ul>
+      </div>
+  
+      <div *ngIf="checkBit" class="table">
+        <tbody>
+          <tr>
+            <th scope="row">
+              Hamming Code with check bit
+            </th>
+            <td *ngFor="let element of hammingCodeWithCheckBit; let i = index">{{element}}</td>
+          </tr>
+        </tbody>
+      </div>
+  
+      <div *ngIf="checkBit"> Check bit = {{hammingCodeWithCheckBit[0]}}
+        (<span *ngIf="hammingCodeWithCheckBit[0] == 0">number of 1's are even</span>
+          <span *ngIf="hammingCodeWithCheckBit[0] == 1">number of 1's are odd</span>)
+      </div>
+  
+  </div>
