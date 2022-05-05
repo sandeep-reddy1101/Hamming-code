@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container pt-3">
   
     <h4>Hamming Encoder</h4>
     <mat-form-field appearance="fill">
@@ -29,8 +29,9 @@
           <tr *ngFor="let arr of toDisplay; let i = index">
             <th scope="row">
               <p *ngIf="i == 0">Parity Bits</p>
-              <p *ngIf="i==1">{{arr[0]}}'s parity</p>
-              <p *ngIf="(i>1) && (i<toDisplay.length-1)">{{arr[(i-1)*2-1]}}'s parity</p>
+              <!-- <p *ngIf="i==1">{{arr[0]}}'s parity</p> -->
+              <!-- <p *ngIf="(i>1) && (i<toDisplay.length-1)">{{arr[(i-1)*2-1]}}'s parity</p> -->
+              <p *ngIf="(i>=1) && (i<toDisplay.length-1)">P{{i-1 | index}}'s parity</p>
               <p *ngIf="i == toDisplay.length-1">Hamming Code</p>
             </th>
             <td *ngFor="let element of arr">{{element}}</td>

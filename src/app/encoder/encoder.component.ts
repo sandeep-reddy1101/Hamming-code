@@ -40,7 +40,23 @@ export class EncoderComponent implements OnInit {
   }
 
   check(){
-    if(this.selectedHamming[0]%2 == 0){
+    // if(this.selectedHamming[0]%2 == 0){
+    //   this.selectedHamming[0] -= 1
+    //   this.checkBit = true
+    // }else{
+    //   this.checkBit = false
+    // }
+    let num = 1
+    let count = 0
+    let len = this.selectedHamming[0]
+    while(num < len){
+      count += 1
+      num *= 2
+    }
+    let diff = this.selectedHamming[0] - this.selectedHamming[1]
+    if(count == diff){
+      this.checkBit = false
+    }else{
       this.selectedHamming[0] -= 1
       this.checkBit = true
     }
